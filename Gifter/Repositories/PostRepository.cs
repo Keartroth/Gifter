@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Gifter.Data;
 using Gifter.Models;
+using System;
 
 namespace Gifter.Repositories
 {
@@ -19,7 +20,7 @@ namespace Gifter.Repositories
         {
             return _context.Post
                            .Include(p => p.UserProfile)
-                           .Include(p => p.Comments)
+                           .Include(p => p.Comment)
                            .ToList();
         }
 
@@ -27,7 +28,7 @@ namespace Gifter.Repositories
         {
             return _context.Post
                            .Include(p => p.UserProfile)
-                           .Include(p => p.Comments)
+                           .Include(p => p.Comment)
                            .FirstOrDefault(p => p.Id == id);
         }
 
@@ -35,7 +36,7 @@ namespace Gifter.Repositories
         {
             return _context.Post.Include(p => p.UserProfile)
                             .Where(p => p.UserProfileId == id)
-                            .Include(p => p.Comments)
+                            .Include(p => p.Comment)
                             .OrderBy(p => p.Title)
                             .ToList();
         }
@@ -57,6 +58,30 @@ namespace Gifter.Repositories
             var post = GetById(id);
             _context.Post.Remove(post);
             _context.SaveChanges();
+        }
+
+        public List<Post> Search(string criterion, bool sortDescending)
+        {
+            var query = _context.Post
+                                .Include(p => p.UserProfile)
+                                .Include(p => p.Comment)
+                                .Where(p => p.Title.Contains(criterion) || p.Caption.Contains(criterion));
+
+            return sortDescending
+                ? query.OrderByDescending(p => p.DateCreated).ToList()
+                : query.OrderBy(p => p.DateCreated).ToList();
+        }
+
+        public List<Post> SearchByDate(DateTime criterion, bool sortDescending)
+        {
+            var query = _context.Post
+                                .Include(p => p.UserProfile)
+                                .Include(p => p.Comment)
+                                .Where(p => p.DateCreated >= criterion);
+
+            return sortDescending
+                ? query.OrderByDescending(p => p.DateCreated).ToList()
+                : query.OrderBy(p => p.DateCreated).ToList();
         }
     }
 }
