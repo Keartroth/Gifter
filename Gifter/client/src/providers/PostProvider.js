@@ -12,13 +12,15 @@ export const PostProvider = (props) => {
     };
 
     const addPost = (post) => {
+        debugger
         return fetch("api/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(post),
-        });
+        })
+            .then(getAllPosts);
     };
 
     return (
