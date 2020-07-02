@@ -149,3 +149,6 @@ C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\obj\Debug\netcorea
 C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\obj\Debug\netcoreapp3.1\Gifter.dll
 C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\obj\Debug\netcoreapp3.1\Gifter.pdb
 C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\obj\Debug\netcoreapp3.1\Gifter.genruntimeconfig.cache
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package-lock.json
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package.json
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\public\manifest.json
