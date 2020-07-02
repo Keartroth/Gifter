@@ -8,13 +8,12 @@ export const PostForm = () => {
     const handleFormChange = (e) => {
         const updatedState = { ...formState }
         updatedState[e.target.id] = e.target.value
-        debugger
         setformState(updatedState)
     }
 
     const submitNewPost = (e) => {
         e.preventDefault();
-        debugger
+
         const today = new Date();
         const now = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
