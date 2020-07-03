@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardImg, CardBody } from "reactstrap";
+import { Comment } from "./Comment";
 
 const Post = ({ post }) => {
     return (
@@ -11,6 +12,15 @@ const Post = ({ post }) => {
                     <strong>{post.title}</strong>
                 </p>
                 <p>{post.caption}</p>
+            </CardBody>
+            <CardBody>
+                {
+                    (post.comment.length > 0)
+                        ? post.comment.map((c) => (
+                            <Comment key={c.id} comment={c} userProfile={post.userProfile} />
+                        ))
+                        : <div>Be the first to comment!</div>
+                }
             </CardBody>
         </Card>
     );
