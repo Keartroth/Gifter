@@ -6,21 +6,19 @@ export const PostProvider = (props) => {
     const [posts, setPosts] = useState([]);
 
     const getAllPosts = () => {
-        return fetch("api/post")
+        return fetch("/api/post")
             .then((res) => res.json())
             .then(setPosts);
     };
 
     const addPost = (post) => {
-        debugger
-        return fetch("api/post", {
+        return fetch("/api/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(post),
-        })
-            .then(getAllPosts);
+        });
     };
 
     const searchPosts = (q) => {
@@ -28,13 +26,18 @@ export const PostProvider = (props) => {
             getAllPosts();
             return
         };
-        return fetch(`api/post/search?q=${q}`)
+        return fetch(`/api/post/search?q=${q}`)
             .then((res) => res.json())
             .then(setPosts);
     };
 
+    const getPost = (id) => {
+        return fetch(`/api/post/${id}`)
+            .then((res) => res.json());
+    };
+
     return (
-        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts }}>
+        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts, getPost }}>
             {props.children}
         </PostContext.Provider>
     );
