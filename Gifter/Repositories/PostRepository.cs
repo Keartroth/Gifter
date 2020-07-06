@@ -20,7 +20,7 @@ namespace Gifter.Repositories
         {
             return _context.Post
                            .Include(p => p.UserProfile)
-                           .Include(p => p.Comment)
+                           .Include(p => p.Comments)
                            .ToList();
         }
 
@@ -28,7 +28,7 @@ namespace Gifter.Repositories
         {
             return _context.Post
                            .Include(p => p.UserProfile)
-                           .Include(p => p.Comment)
+                           .Include(p => p.Comments)
                            .FirstOrDefault(p => p.Id == id);
         }
 
@@ -36,7 +36,7 @@ namespace Gifter.Repositories
         {
             return _context.Post.Include(p => p.UserProfile)
                             .Where(p => p.UserProfileId == id)
-                            .Include(p => p.Comment)
+                            .Include(p => p.Comments)
                             .OrderBy(p => p.Title)
                             .ToList();
         }
@@ -64,7 +64,7 @@ namespace Gifter.Repositories
         {
             var query = _context.Post
                                 .Include(p => p.UserProfile)
-                                .Include(p => p.Comment)
+                                .Include(p => p.Comments)
                                 .Where(p => p.Title.Contains(criterion) || p.Caption.Contains(criterion));
 
             return sortDescending
@@ -76,7 +76,7 @@ namespace Gifter.Repositories
         {
             var query = _context.Post
                                 .Include(p => p.UserProfile)
-                                .Include(p => p.Comment)
+                                .Include(p => p.Comments)
                                 .Where(p => p.DateCreated >= criterion);
 
             return sortDescending

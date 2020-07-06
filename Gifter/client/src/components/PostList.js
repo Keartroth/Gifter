@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { PostContext } from "../providers/PostProvider";
-import Post from "./Post";
+import { Post } from "./Post";
 
-const PostList = () => {
+export const PostList = () => {
     const { posts, getAllPosts } = useContext(PostContext);
 
     useEffect(() => {
@@ -12,18 +12,16 @@ const PostList = () => {
     return (
         <div className="container">
             <div className="row justify-content-center">
-                <div class="cards-column">
+                <div className="cards-column">
                     {
                         (posts.length > 0)
                             ? posts.map((post) => (
                                 <Post key={post.id} post={post} />
                             ))
-                            : <div class="alert alert-info" role="alert">No matching posts fit your criteria</div>
+                            : <div className="alert alert-info" role="alert">No matching posts fit your criteria</div>
                     }
                 </div>
             </div>
         </div>
     );
 };
-
-export default PostList;
