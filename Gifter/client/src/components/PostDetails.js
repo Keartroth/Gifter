@@ -16,7 +16,6 @@ export const PostDetails = () => {
     if (!post) {
         return null;
     }
-    debugger
     return (
         <div className="container">
             <div className="row justify-content-center">

@@ -72,6 +72,18 @@ namespace Gifter.Repositories
                 : query.OrderBy(p => p.DateCreated).ToList();
         }
 
+        public List<Post> SearchUsersPosts(string criterion, int id, bool sortDescending)
+        {
+            var query = _context.Post
+                                .Include(p => p.UserProfile)
+                                .Include(p => p.Comments)
+                                .Where(p => p.UserProfileId == id && (p.Title.Contains(criterion) || p.Caption.Contains(criterion)));
+
+            return sortDescending
+                ? query.OrderByDescending(p => p.DateCreated).ToList()
+                : query.OrderBy(p => p.DateCreated).ToList();
+        }
+
         public List<Post> SearchByDate(DateTime criterion, bool sortDescending)
         {
             var query = _context.Post

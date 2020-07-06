@@ -31,6 +31,16 @@ export const PostProvider = (props) => {
             .then(setPosts);
     };
 
+    const searchUsersPosts = (q, id) => {
+        if (!q) {
+            getAllPostsByUser(id);
+            return
+        };
+        return fetch(`/api/post/searchusersposts?q=${q}&id=${id}`)
+            .then((res) => res.json())
+            .then(setPosts);
+    };
+
     const getPost = (id) => {
         return fetch(`/api/post/${id}`)
             .then((res) => res.json());
@@ -43,7 +53,7 @@ export const PostProvider = (props) => {
     };
 
     return (
-        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts, getPost, getAllPostsByUser }}>
+        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts, getPost, getAllPostsByUser, searchUsersPosts }}>
             {props.children}
         </PostContext.Provider>
     );
