@@ -71,6 +71,12 @@ namespace Gifter.Controllers
             return Ok(_postRepository.Search(q, sortDesc));
         }
 
+        [HttpGet("searchusersposts")]
+        public IActionResult SearchUsersPosts(string q, int id, bool sortDesc)
+        {
+            return Ok(_postRepository.SearchUsersPosts(q, id, sortDesc));
+        }
+
         [HttpGet("hottest")]
         public IActionResult HotTest(DateTime since, bool sortDesc)
         {

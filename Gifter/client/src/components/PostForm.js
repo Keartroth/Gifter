@@ -33,7 +33,6 @@ export const PostForm = () => {
         formState.dateCreated = now;
         formState.userProfileId = +formState.userProfileId;
 
-        debugger
         addPost(formState).then((p) => {
             history.push("/");
         });

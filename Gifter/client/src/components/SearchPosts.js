@@ -1,21 +1,35 @@
 import React, { useContext } from 'react'
-import { Input } from 'reactstrap'
+import { Card, CardBody, Input, Label } from 'reactstrap'
+import { useLocation } from "react-router-dom";
 import { PostContext } from '../providers/PostProvider'
 import debounce from 'lodash.debounce'
 
 export const SearchPosts = () => {
-    const { searchPosts } = useContext(PostContext);
+    const { searchPosts, searchUsersPosts } = useContext(PostContext);
+    let routeLocation = useLocation().pathname;
 
     const debounceSearchPosts = debounce(searchPosts, 500);
+    const debounceSearchUsersPosts = debounce(searchUsersPosts, 500);
 
     const handleChange = (e) => {
-        debounceSearchPosts(e.target.value);
+        if (routeLocation == '/') {
+            debounceSearchPosts(e.target.value);
+        } else {
+            let [trash1, trash2, userId] = routeLocation.split('/');
+            const id = +userId;
+
+            debounceSearchUsersPosts(e.target.value, id);
+        }
     };
 
     return (
         <div className='container mt-1'>
-            <label for="title">Search Posts by Title and Caption</label>
-            <Input type='text' onChange={handleChange} placeholder="Search Posts" />
+            <Card>
+                <CardBody>
+                    <Label for="title">Search Posts by Title and Caption</Label>
+                    <Input type='text' onChange={handleChange} placeholder="Search Posts" />
+                </CardBody>
+            </Card>
         </div>
     );
 };
