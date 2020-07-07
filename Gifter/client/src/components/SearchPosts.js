@@ -5,11 +5,10 @@ import { PostContext } from '../providers/PostProvider'
 import debounce from 'lodash.debounce'
 
 export const SearchPosts = () => {
-    const { searchPosts, searchUsersPosts } = useContext(PostContext);
+    const { searchPosts } = useContext(PostContext);
     let routeLocation = useLocation().pathname;
 
     const debounceSearchPosts = debounce(searchPosts, 500);
-    const debounceSearchUsersPosts = debounce(searchUsersPosts, 500);
 
     const handleChange = (e) => {
         if (routeLocation == '/') {
@@ -17,8 +16,7 @@ export const SearchPosts = () => {
         } else {
             let [trash1, trash2, userId] = routeLocation.split('/');
             const id = +userId;
-
-            debounceSearchUsersPosts(e.target.value, id);
+            debounceSearchPosts(e.target.value, id);
         }
     };
 
