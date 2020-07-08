@@ -152,3 +152,10 @@ C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\obj\Debug\netcorea
 C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package-lock.json
 C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package.json
 C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\public\manifest.json
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\mecar\workspace\server side\Book Three\Gifter\Gifter\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

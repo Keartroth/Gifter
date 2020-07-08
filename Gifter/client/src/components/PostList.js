@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { PostContext } from "../providers/PostProvider";
+import { SearchPosts } from "./SearchPosts";
 import { Post } from "./Post";
 
 export const PostList = () => {
@@ -12,6 +13,7 @@ export const PostList = () => {
     return (
         <div className="container">
             <div className="row justify-content-center">
+                <SearchPosts />
                 <div className="cards-column">
                     {
                         (posts.length > 0)

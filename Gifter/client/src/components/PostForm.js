@@ -13,7 +13,9 @@ import { useHistory } from "react-router-dom";
 
 export const PostForm = () => {
     const { addPost } = useContext(PostContext);
-    const [formState, setformState] = useState({})
+    const [formState, setformState] = useState({});
+
+    console.log(JSON.parse(sessionStorage.getItem("userProfile")).id);
 
     const handleUserInput = (e) => {
         const updatedState = { ...formState }
@@ -31,6 +33,7 @@ export const PostForm = () => {
         const now = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
         formState.dateCreated = now;
+        formState.userProfileId = JSON.parse(sessionStorage.getItem("userProfile")).id;
         formState.userProfileId = +formState.userProfileId;
 
         addPost(formState).then((p) => {
@@ -44,16 +47,6 @@ export const PostForm = () => {
                 <Card className="col-sm-12 col-lg-6">
                     <CardBody>
                         <Form onSubmit={submit}>
-                            <FormGroup>
-                                <Label for="userId">User Id (For Now...)</Label>
-                                <Input
-                                    type="number"
-                                    min="1"
-                                    id="userProfileId"
-                                    onChange={handleUserInput}
-                                    required
-                                />
-                            </FormGroup>
                             <FormGroup>
                                 <Label for="imageUrl">Gif URL</Label>
                                 <Input
