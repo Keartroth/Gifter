@@ -8,7 +8,7 @@ import {
     Input,
     Button,
 } from "reactstrap";
-import { PostContext } from "../providers/PostProvider";
+import { PostContext } from "../../providers/PostProvider";
 import { useHistory } from "react-router-dom";
 
 export const PostForm = () => {

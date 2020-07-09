@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { PostList } from "./PostList";
-import { PostForm } from "./PostForm";
-import { PostDetails } from "./PostDetails";
-import { UserPosts } from "./UserPosts";
-import { Login } from "./Login";
-import { Register } from "./Register";
+import { PostList } from "./posts/PostList";
+import { PostForm } from "./posts/PostForm";
+import { PostDetails } from "./posts/PostDetails";
+import { UserPosts } from "./users/UserPosts";
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 
 export const ApplicationViews = () => {

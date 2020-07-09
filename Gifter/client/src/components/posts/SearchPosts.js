@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Card, CardBody, Input, Label } from 'reactstrap'
 import { useLocation } from "react-router-dom";
-import { PostContext } from '../providers/PostProvider'
+import { PostContext } from '../../providers/PostProvider'
 import debounce from 'lodash.debounce'
 
 export const SearchPosts = () => {
