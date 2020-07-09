@@ -10,7 +10,7 @@ export const PostProvider = (props) => {
     const apiUrl = '/api/post'
 
     const getAllPosts = () => {
-        getToken().then((token) =>
+        return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "GET",
                 headers: {
@@ -21,7 +21,7 @@ export const PostProvider = (props) => {
     };
 
     const addPost = (post) => {
-        getToken().then((token) =>
+        return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",
                 headers: {

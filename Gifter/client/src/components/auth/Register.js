@@ -1,19 +1,19 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useHistory } from "react-router-dom";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 export const Register = () => {
     const history = useHistory();
     const { register } = useContext(UserProfileContext);
 
-    const [registrationState, setRegistrationState] = useState();
+    const [registrationState, setRegistrationState] = useState({});
 
-    const handlePromiseChange = (e) => {
-        const updatedPromises = [...registrationState]
-        updatedPromises[e.target.id] = e.target.value
-        setRegistrationState(updatedPromises)
-    }
+    const handleChange = (e) => {
+        const update = { ...registrationState }
+        update[e.target.id] = e.target.value
+        setRegistrationState(update)
+    };
 
 
     const registerClick = (e) => {
@@ -37,27 +37,27 @@ export const Register = () => {
             <fieldset>
                 <FormGroup>
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" type="text" onChange={setRegistrationState} required />
+                    <Input id="name" type="text" onChange={handleChange} required />
                 </FormGroup>
                 <FormGroup>
                     <Label for="email">Email</Label>
-                    <Input id="email" type="text" onChange={setRegistrationState} required />
+                    <Input id="email" type="text" onChange={handleChange} required />
                 </FormGroup>
                 <FormGroup>
                     <Label for="imageUrl">ImageUrl</Label>
-                    <Input id="imageUrl" type="url" onChange={setRegistrationState} />
+                    <Input id="imageUrl" type="url" onChange={handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="bio">Bio</Label>
-                    <Input id="bio" type="textarea" onChange={setRegistrationState} required />
+                    <Input id="bio" type="textarea" onChange={handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Password</Label>
-                    <Input id="password" type="password" onChange={setRegistrationState} required />
+                    <Input id="password" type="password" minLength="6" onChange={handleChange} required />
                 </FormGroup>
                 <FormGroup>
                     <Label for="confirmPassword">Confirm Password</Label>
-                    <Input id="confirmPassword" type="password" onChange={setRegistrationState} required />
+                    <Input id="confirmPassword" type="password" minLength="6" onChange={handleChange} required />
                 </FormGroup>
                 <Button type="submit">Register</Button>
             </fieldset>
