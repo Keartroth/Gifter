@@ -150,6 +150,53 @@ namespace Gifter.Tests
             Assert.Equal(0, results.Count);
         }
 
+        [Fact]
+        public void Get_Most_Recent_Should_Return_One_Result()
+        {
+            var numResults = 1;
+            var repo = new PostRepository(_context);
+
+            var result = repo.GetMostRecent(numResults);
+
+            Assert.Equal("The Dude", result[0].Title);
+            Assert.Equal(1, result.Count);
+        }
+
+        [Fact]
+        public void Get_Most_Recent_Should_Return_Three_Results()
+        {
+            var numResults = 3;
+            var repo = new PostRepository(_context);
+
+            var result = repo.GetMostRecent(numResults);
+
+            Assert.Equal("The Dude", result[0].Title);
+            Assert.Equal(3, result.Count);
+        }
+
+        [Fact]
+        public void Get_Most_Recent_Should_Return_Maximum_Post_Count_If_Parameter_Exceeds_Post_Count()
+        {
+            var numResults = 100;
+            var repo = new PostRepository(_context);
+
+            var result = repo.GetMostRecent(numResults);
+
+            Assert.Equal("The Dude", result[0].Title);
+            Assert.Equal(4, result.Count);
+        }
+
+        [Fact]
+        public void Get_Most_Recent_Should_Return_An_Empty_List()
+        {
+            var numResults = 0;
+            var repo = new PostRepository(_context);
+
+            var result = repo.GetMostRecent(numResults);
+
+            Assert.Equal(0, result.Count);
+        }
+
         // Add sample data
         private void AddSampleData()
         {
@@ -223,7 +270,7 @@ namespace Gifter.Tests
                 Title = "Opinions",
                 ImageUrl = "http://foo.gif",
                 UserProfile = user1,
-                DateCreated = DateTime.Now - TimeSpan.FromDays(11)
+                DateCreated = DateTime.Now - TimeSpan.FromDays(13)
             };
 
             var comment1 = new Comment()

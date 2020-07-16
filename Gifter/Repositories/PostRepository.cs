@@ -92,5 +92,15 @@ namespace Gifter.Repositories
                 ? query.OrderByDescending(p => p.DateCreated).ToList()
                 : query.OrderBy(p => p.DateCreated).ToList();
         }
+
+        public List<Post> GetMostRecent(int numResults)
+        {
+            return _context.Post
+                            .Include(p => p.UserProfile)
+                            .Include(p => p.Comments)
+                            .OrderByDescending(p => p.DateCreated)
+                            .Take(numResults)
+                            .ToList();
+        }
     }
 }
