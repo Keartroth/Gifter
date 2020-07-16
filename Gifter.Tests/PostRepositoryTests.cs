@@ -52,7 +52,7 @@ namespace Gifter.Tests
             var repo = new PostRepository(_context);
             var results = repo.Search("", 0, true);
 
-            Assert.Equal(3, results.Count);
+            Assert.Equal(4, results.Count);
             Assert.Equal(mostRecentTitle, results[0].Title);
         }
 
@@ -62,10 +62,11 @@ namespace Gifter.Tests
             var repo = new PostRepository(_context);
             var results = repo.Search("", 0, true);
 
-            Assert.Equal(3, results.Count);
+            Assert.Equal(4, results.Count);
             Assert.NotNull(results[0].UserProfile);
             Assert.NotNull(results[1].UserProfile);
             Assert.NotNull(results[2].UserProfile);
+            Assert.NotNull(results[3].UserProfile);
         }
 
         [Fact]
@@ -75,8 +76,8 @@ namespace Gifter.Tests
             var repo = new PostRepository(_context);
             var results = repo.Search("", 0, false);
 
-            Assert.Equal(3, results.Count);
-            Assert.Equal(mostRecentTitle, results[2].Title);
+            Assert.Equal(4, results.Count);
+            Assert.Equal(mostRecentTitle, results[3].Title);
         }
 
         [Fact]
@@ -86,8 +87,9 @@ namespace Gifter.Tests
             var repo = new PostRepository(_context);
             var results = repo.Search("", 1, false);
 
-            Assert.Equal(1, results.Count);
-            Assert.Equal(userId, results[0].Id);
+            Assert.Equal(2, results.Count);
+            Assert.Equal(userId, results[0].UserProfileId);
+            Assert.Equal(userId, results[1].UserProfileId);
         }
 
         [Fact]
@@ -118,6 +120,34 @@ namespace Gifter.Tests
             var result = repo.GetById(postIdWithComment);
 
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void Posts_Should_Be_Ordered_Alphabetically_By_Title()
+        {
+            var userId = 1;
+            var repo = new PostRepository(_context);
+
+            // Now attempt to get it
+            var results = repo.GetByUserProfileId(userId);
+
+            Assert.NotNull(results);
+            Assert.Equal("Opinions", results[0].Title);
+            Assert.Equal("The Dude", results[1].Title);
+            Assert.Equal(1, results[0].UserProfileId);
+            Assert.Equal(1, results[1].UserProfileId);
+        }
+
+        [Fact]
+        public void An_Empty_List_Should_Be_Returned_If_UserId_Does_Not_Exist()
+        {
+            var userId = 5;
+            var repo = new PostRepository(_context);
+
+            // Now attempt to get it
+            var results = repo.GetByUserProfileId(userId);
+
+            Assert.Equal(0, results.Count);
         }
 
         // Add sample data
@@ -187,6 +217,15 @@ namespace Gifter.Tests
                 DateCreated = DateTime.Now - TimeSpan.FromDays(12),
             };
 
+            var post4 = new Post()
+            {
+                Caption = "That's like, your opinion, man.",
+                Title = "Opinions",
+                ImageUrl = "http://foo.gif",
+                UserProfile = user1,
+                DateCreated = DateTime.Now - TimeSpan.FromDays(11)
+            };
+
             var comment1 = new Comment()
             {
                 Post = post2,
@@ -204,6 +243,7 @@ namespace Gifter.Tests
             _context.Add(post1);
             _context.Add(post2);
             _context.Add(post3);
+            _context.Add(post4);
             _context.Add(comment1);
             _context.Add(comment2);
             _context.SaveChanges();
